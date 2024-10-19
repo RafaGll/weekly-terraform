@@ -15,8 +15,8 @@ resource "azurerm_subnet" "weekly_rafa" {
 # Crear el balanceador de carga interno
 resource "azurerm_lb" "weekly_rafa" {
   name                = var.lb_name
-  location            = azurerm_resource_group.weekly_rafa.location
-  resource_group_name = azurerm_resource_group.weekly_rafa.name
+  location            = var.location
+  resource_group_name = var.resource_group_name
 
   sku = var.sku_type
 
@@ -37,8 +37,8 @@ resource "azurerm_lb_backend_address_pool" "weekly_rafa" {
 resource "azurerm_network_interface" "weekly_rafa" {
   for_each            = var.vms
   name                = "${each.key}-nic"
-  location            = azurerm_resource_group.weekly_rafa.location
-  resource_group_name = azurerm_resource_group.weekly_rafa.name
+  location            = var.location
+  resource_group_name = var.resource_group_name
 
   ip_configuration {
     name                          = "${each.key}-ip-config"
@@ -50,8 +50,8 @@ resource "azurerm_network_interface" "weekly_rafa" {
 resource "azurerm_linux_virtual_machine" "weekly_rafa" {
   for_each              = var.vms
   name                  = each.value.name
-  resource_group_name   = azurerm_resource_group.weekly_rafa.name
-  location              = azurerm_resource_group.weekly_rafa.location
+  resource_group_name   = var.resource_group_name
+  location              = var.location
   size                  = each.value.size
   admin_username        = var.admin_username
   network_interface_ids = [
