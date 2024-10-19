@@ -48,12 +48,12 @@ resource "azurerm_network_interface" "weekly_rafa" {
 }
 
 resource "azurerm_linux_virtual_machine" "weekly_rafa" {
-  for_each            = var.vms
-  name                = each.value.name
-  resource_group_name = azurerm_resource_group.weekly_rafa.name
-  location            = azurerm_resource_group.weekly_rafa.location
-  size                = each.value.size
-  admin_username      = var.admin_username
+  for_each              = var.vms
+  name                  = each.value.name
+  resource_group_name   = azurerm_resource_group.weekly_rafa.name
+  location              = azurerm_resource_group.weekly_rafa.location
+  size                  = each.value.size
+  admin_username        = var.admin_username
   network_interface_ids = [
     azurerm_network_interface.weekly_rafa[each.key].id,
   ]
