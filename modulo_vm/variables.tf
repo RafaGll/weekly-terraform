@@ -18,6 +18,7 @@ variable "vms" {
   type = map(object({
     name = string
     size = string
+    storage_account_type = string
   }))
 }
 
@@ -31,10 +32,6 @@ variable "resource_group_name" {
 }
 
 variable "location" {
-  type = string
-}
-
-variable "load_balancer_type" {
   type = string
 }
 
