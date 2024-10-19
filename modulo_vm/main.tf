@@ -53,6 +53,7 @@ resource "azurerm_linux_virtual_machine" "weekly_rafa" {
   resource_group_name   = var.resource_group_name
   location              = var.location
   size                  = each.value.size
+  disable_password_authentication = false
   admin_username        = var.admin_username
   admin_password        = var.admin_password
   network_interface_ids = [
