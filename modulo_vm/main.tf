@@ -54,6 +54,7 @@ resource "azurerm_linux_virtual_machine" "weekly_rafa" {
   location              = var.location
   size                  = each.value.size
   admin_username        = var.admin_username
+  admin_password        = var.admin_password
   network_interface_ids = [
     azurerm_network_interface.weekly_rafa[each.key].id,
   ]

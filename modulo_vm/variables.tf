@@ -26,6 +26,9 @@ variable "admin_username" {
   type = string
   default = "azureuser"
 }
+variable "admin_password" {
+  type = string
+}
 
 variable "resource_group_name" {
   type = string
