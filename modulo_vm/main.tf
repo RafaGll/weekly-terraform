@@ -81,8 +81,3 @@ resource "azurerm_lb_backend_address_pool_address" "weekly_rafa" {
   virtual_network_id      = azurerm_virtual_network.weekly_rafa.id
   ip_address             = azurerm_network_interface.weekly_rafa[each.key].private_ip_address
 }
-
-import {
-  to = azurerm_virtual_network.weekly_rafa
-  id = "/subscriptions/86f76907-b9d5-46fa-a39d-aff8432a1868/resourceGroups/rg-rgonzalez-dvfinlab/providers/Microsoft.Network/virtualNetworks/vm_vnet"
-}
